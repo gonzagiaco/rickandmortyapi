@@ -1,0 +1,215 @@
+/* Estilos globales */
+body {
+    background-color: rgb(10, 10, 10);
+    background-image: url('background2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Encabezado */
+.header {
+    height: 80px;
+    width: 100%;
+    background-color: rgb(10, 10, 10);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    border-bottom: 1px solid rgb(27, 27, 27);
+    z-index: 10;
+}
+
+.logo {
+    height: 100%;
+    max-height: 50px;
+    width: auto;
+    padding: 10px 0px 0px 40px;
+}
+
+.contenedor-busqueda {
+    display: flex;
+    align-items: center;
+}
+
+.input-buscar {
+    width: 50%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-left: 10px;
+    padding: 5px;
+    font-size: 1em;
+}
+
+.input-buscar:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+.select-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.select-icon i {
+    font-size: 1.5em;
+    color: transparent;
+    background: linear-gradient(10deg, cyan, fuchsia, lime);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 200px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+
+.contenedorGeneral {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+.contenedorDer {
+    flex: 1;
+    background-color: rgba(24, 19, 58, 0.836);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 40px;
+    margin: 140px;
+    border-radius: 50px;
+}
+
+.contenedorIzq {
+    width: 40%;
+    height: 100vh;
+    background-color: rgb(10, 10, 10);
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    height: 100vh;
+    transition: transform 0.5s ease-in-out;
+}
+
+.contenedorTarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width: calc(33.333% - 50px); /* Ajusta el tamaño de la tarjeta */
+    position: relative;
+}
+
+.character-img {
+    width: 120px;
+    border-radius: 8px;
+}
+
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+
+.punto {
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    /* Color de fondo por defecto */
+    border-radius: 50%;
+    /* Hace que el punto sea redondeado */
+    display: inline-block;
+    margin-left: 10px;
+    /* Espacio entre el estado y el punto */
+}
+
+.punto.verde {
+    background-color: green;
+    /* Color verde para personajes vivos */
+}
+
+.punto.rojo {
+    background-color: red;
+    /* Color rojo para personajes muertos */
+}
+
+
+/* Pie de página */
+footer {
+    bottom: 0;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgb(10, 10, 10);
+    border-top: 1px solid rgb(27, 27, 27);
+
+}
+
+footer p {
+    color: rgb(15, 15, 15);
+}

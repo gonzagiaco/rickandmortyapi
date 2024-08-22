@@ -1,0 +1,158 @@
+"use strict";
+
+const api = "https://rickandmortyapi.com/api/character";
+let personajes = [];
+let criterioBusqueda = 'name';
+
+async function consumirApi() {
+    try {
+        const response = await fetch(api);
+        const data = await response.json();
+        personajes = data.results;
+        tarjetasDinamicas(personajes);
+    } catch (error) {
+        console.error("Error al consumir API: ", error);
+    }
+}
+
+function tarjetasDinamicas(personajes) {
+    const contenedor = document.querySelector(".slider");
+    contenedor.innerHTML = ""; // Limpiar el contenedor antes de añadir nuevos bloques de tarjetas
+
+    // Agrupar las tarjetas en bloques de 9
+    const bloques = [];
+    for (let i = 0; i < personajes.length; i += 9) {
+        const bloque = personajes.slice(i, i + 9);
+        bloques.push(bloque);
+    }
+
+    bloques.forEach(bloque => {
+        const contenedorBloque = document.createElement("div");
+        contenedorBloque.classList.add("contenedorTarjetas");
+
+        bloque.forEach(personaje => {
+            const { name, location, origin, species, gender, image, status } = personaje;
+
+            // Crear la imagen del personaje
+            const imagen = document.createElement("img");
+            imagen.src = image;
+            imagen.alt = name;
+            imagen.classList.add("character-img");
+
+            // Crear el contenedor de la información adicional
+            const infoAdicional = document.createElement("div");
+            infoAdicional.classList.add("info-adicional");
+
+            // Crear el fondo desenfocado
+            const fondoDesenfocado = document.createElement("div");
+            fondoDesenfocado.classList.add("info-adicional-background");
+
+            // Crear el contenido adicional
+            const contenidoAdicional = document.createElement("div");
+            contenidoAdicional.classList.add("info-adicional-content");
+            contenidoAdicional.innerHTML = `
+                <div class="titulo-personaje">
+                    <h2>${name} <span class="estado">| Alive</span><span class="punto ${status === 'Alive' ? 'verde' : 'rojo'}"></span></h2>
+                </div>
+                <p><strong>Especie:</strong> ${species}</p>
+                <p><strong>Género:</strong> ${gender}</p>
+                <p><strong>Origen:</strong> ${origin.name}</p>
+                <p><strong>Ubicación:</strong> ${location.name}</p>
+            `;
+
+            // Añadir el fondo desenfocado y el contenido adicional al contenedor de información
+            infoAdicional.appendChild(fondoDesenfocado);
+            infoAdicional.appendChild(contenidoAdicional);
+
+            // Crear la tarjeta
+            const tarjeta = document.createElement("div");
+            tarjeta.classList.add("tarjeta");
+
+            // Añadir la imagen y la información adicional a la tarjeta
+            tarjeta.appendChild(imagen);
+
+            // Añadir la tarjeta al contenedor del bloque
+            contenedorBloque.appendChild(tarjeta);
+        });
+
+        // Añadir el bloque al slider
+        contenedor.appendChild(contenedorBloque);
+    });
+
+    manejarControlesSlider(bloques.length);
+}
+
+function manejarControlesSlider(totalBloques) {
+    let currentIndex = 0;
+    const contenedor = document.querySelector(".slider");
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+
+    function showBlock(index) {
+        const translateX = -index * 100;
+        contenedor.style.transform = `translateX(${translateX}%)`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % totalBloques;
+        showBlock(currentIndex);
+    });
+
+    prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + totalBloques) % totalBloques;
+        showBlock(currentIndex);
+    });
+
+    // Mostrar el primer bloque por defecto
+    showBlock(currentIndex);
+}
+
+function filtrarResultados(filtro) {
+    const resultadosFiltrados = personajes.filter(personaje => {
+        const valorFiltro = filtro.toLowerCase();
+        switch (criterioBusqueda) {
+            case 'name':
+                return personaje.name.toLowerCase().includes(valorFiltro);
+            case 'origin':
+                return personaje.origin.name.toLowerCase().includes(valorFiltro);
+            case 'location':
+                return personaje.location.name.toLowerCase().includes(valorFiltro);
+            default:
+                return false;
+        }
+    });
+    tarjetasDinamicas(resultadosFiltrados);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    consumirApi();
+
+    document.querySelector(".input-buscar").addEventListener("input", (event) => {
+        const valorBusqueda = event.target.value;
+        filtrarResultados(valorBusqueda);
+    });
+
+    document.getElementById("select-icon").addEventListener("click", (event) => {
+        event.stopPropagation(); 
+        const dropdownMenu = document.getElementById("dropdown-menu");
+        dropdownMenu.classList.toggle('show'); 
+    });
+
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', (event) => {
+            const dropdownMenu = document.getElementById("dropdown-menu");
+            document.querySelector(".input-buscar").value = '';
+            criterioBusqueda = event.target.getAttribute('data-value');
+            const valorBusqueda = document.querySelector(".input-buscar").value;
+            filtrarResultados(valorBusqueda);
+        });
+    });
+
+    window.addEventListener('click', (event) => {
+        const dropdownMenu = document.getElementById("dropdown-menu");
+        const selectIcon = document.getElementById('select-icon');
+        if (!selectIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+            dropdownMenu.classList.remove('show'); 
+        }
+    });
+});

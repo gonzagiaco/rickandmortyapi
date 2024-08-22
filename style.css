@@ -1,0 +1,312 @@
+*{
+    margin: 0;
+}
+
+a{
+    color: rgb(10, 10, 10);
+}
+
+/* Estilos globales */
+body {
+    background-color: rgb(10, 10, 10);
+    background-image: url('background2.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Encabezado */
+.header {
+    height: 80px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    height: 100%;
+    max-height: 50px;
+    width: auto;
+    padding: 10px 0px 0px 40px;
+}
+
+.contenedor-busqueda {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px 40px 0px 40px;
+}
+
+.input-buscar {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    color: white;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 1em;
+    background-color: rgba(10, 10, 10, 0);
+}
+
+.input-buscar:focus {
+    border-color: #ae00ff;
+    box-shadow: 0 4px 6px rgba(212, 0, 255, 0.2);
+}
+
+.select-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.select-icon i {
+    font-size: 1.5em;
+    color: transparent;
+    background: linear-gradient(10deg, cyan, fuchsia, lime);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 200px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+
+.contenedorGeneral {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+
+.contenedorDer {
+    display: flex;
+    background-color: rgba(10, 10, 10, 0);
+    backdrop-filter: blur(10px);
+    color: rgb(10, 10, 10);
+    width: 50%;
+    height: 30%;
+    padding: 40px;
+    margin: 140px;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden; /* Asegura que el borde no se desborde del contenedor */
+    align-items: center;
+    border: 1px solid rgba(128, 128, 128, 0.137);
+
+  }
+
+
+.contenedorSocial{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 50px;
+}
+
+.fa-linkedin:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
+.fa-codepen:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
+.contenedorIzq {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0);
+    backdrop-filter: blur(10px);
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: 1px solid rgba(128, 128, 128, 0.438);
+
+}
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+
+.prev-btn, .next-btn {
+    background-color: rgba(0, 0, 0, 0.322);
+    color: white; /* Color del texto */
+    font-size: 1.5em;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    z-index: 1000;
+    border: none;
+
+}
+
+.prev-btn:hover, .next-btn:hover {
+    transform: scale(1.1);
+}
+
+
+
+.contenedorTarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.tarjeta {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    width: calc(33.333% - 50px);
+    transition: transform 0.5s ease;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tarjeta:hover {
+    transform: scale(1.05);
+}
+
+.character-img {
+    width: 100%;
+    transform: scale(1.1);
+    border-radius: 8px;
+}
+
+
+.info-adicional {
+    display: none;
+    width: 100%;
+}
+
+
+.contenedorDer .info-adicional {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.titulo-personaje h2{
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+.info-adicional-content{
+    width: 50%;
+}
+
+.info-adicional-content p{
+    margin-bottom: 5px;
+}
+
+.contenedorImagenAdicional{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+}
+
+.character-img-adicional{
+    width: 160px;
+    height: 160px;
+    border-radius: 50px;
+}
+
+
+
+.estado-punto {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+  }
+  
+  .punto {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 8px; /* Espacio entre el texto y el punto */
+  }
+  
+  .punto.verde {
+    background-color: green; /* Color verde para 'Alive' */
+  }
+  
+  .punto.rojo {
+    background-color: red; /* Color rojo para 'Dead' */
+  }
+
+
+/* Pie de página */
+footer {
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p {
+    color: rgb(15, 15, 15);
+}
