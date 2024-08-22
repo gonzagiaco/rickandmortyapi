@@ -2,6 +2,7 @@
 
 const api = "https://rickandmortyapi.com/api/character";
 let personajes = [];
+const criterioBusqueda = 'name';
 
 const contenedorDer = document.querySelector(".contenedorDer");
 let contenedorDerContenido = contenedorDer.innerHTML; // Almacena el contenido original
