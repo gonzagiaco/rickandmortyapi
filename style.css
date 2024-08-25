@@ -329,6 +329,8 @@ footer p {
     order: 2;
     width: 100%;
     backdrop-filter: none;
+    padding: none;
+    border: none;
 }
 
 .tarjeta{
