@@ -125,6 +125,7 @@ body {
     position: relative;
     overflow: hidden; /* Asegura que el borde no se desborde del contenedor */
     align-items: center;
+    justify-content: center;
     border: 1px solid rgba(128, 128, 128, 0.137);
 
   }
@@ -309,4 +310,28 @@ footer {
 
 footer p {
     color: rgb(15, 15, 15);
+}
+
+/* Estilos generales para móviles */
+@media (max-width: 768px) {
+
+.contenedorGeneral{
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorDer{
+    order: 1;
+    margin: 40px;
+    padding: 70px;
+}
+.contenedorIzq{
+    order: 2;
+    width: 100%;
+    backdrop-filter: none;
+}
+
+.tarjeta{
+}
+
 }
