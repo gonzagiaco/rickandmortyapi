@@ -87,16 +87,16 @@ function tarjetasDinamicas(personajes) {
             tarjeta.appendChild(infoAdicional);
 
             // Evento para mostrar la información adicional en contenedorDer al pasar el mouse
-            tarjeta.addEventListener('mouseover', () => {
+            tarjeta.addEventListener('click', () => {
                 const contenedorDer = document.querySelector('.contenedorDer');
                 contenedorDer.innerHTML = '';
                 contenedorDer.appendChild(infoAdicional.cloneNode(true));
             });
 
-            tarjeta.addEventListener('mouseout', () =>{
+            /*tarjeta.addEventListener('mouseout', () =>{
                 const contenedorDer = document.querySelector('.contenedorDer');
                 contenedorDer.innerHTML = contenedorDerContenido;
-            });
+            }); */
             
 
             // Añadir la tarjeta al contenedor del bloque
