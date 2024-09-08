@@ -87,17 +87,13 @@ function tarjetasDinamicas(personajes) {
             tarjeta.appendChild(infoAdicional);
 
             // Evento para mostrar la información adicional en contenedorDer al pasar el mouse
-            tarjeta.addEventListener('mouseover', () => {
+            tarjeta.addEventListener('click', () => {
                 const contenedorDer = document.querySelector('.contenedorDer');
                 contenedorDer.innerHTML = '';
                 contenedorDer.appendChild(infoAdicional.cloneNode(true));
             });
 
-            // Evento para restaurar el contenido original al quitar el mouse
-            tarjeta.addEventListener('mouseout', () => {
-                const contenedorDer = document.querySelector('.contenedorDer');
-                contenedorDer.innerHTML = contenedorDerContenido; // Restaurar contenido original
-            });
+            
 
             // Añadir la tarjeta al contenedor del bloque
             contenedorBloque.appendChild(tarjeta);
@@ -161,5 +157,27 @@ document.addEventListener("DOMContentLoaded", () => {
         filtrarResultados(valorBusqueda);
     });
 
+     // Partículas apocalípticas
+     const particleContainer = document.getElementById('particle-container');
+
+     function createParticle() {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+    
+        const size = Math.random() * 5 + 2; // Tamaño de las partículas reducido
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+    
+        particle.style.left = `${Math.random() * 100}vw`;
+        particle.style.top = `${Math.random() * 100}vh`;
+    
+        particleContainer.appendChild(particle);
+    
+        setTimeout(() => {
+            particle.remove();
+        }, 5000); // Eliminar la partícula después de la animación
+    }
+ 
+     setInterval(createParticle, 100); // Crear partículas a intervalos regulares
    
 });
