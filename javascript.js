@@ -13,7 +13,7 @@ async function consumirApi() {
         const data = await response.json();
         personajes = data.results;
 
-        // Agregar una tarjeta personalizada
+        /*// Agregar una tarjeta personalizada
         const gonzagiaco = {
             name: "Gonzalo Giacomino",
             location: { name: "Tandil, Buenos Aires, Argentina" },
@@ -23,7 +23,7 @@ async function consumirApi() {
             image: "gonza.png",
             status: "Alive"
         };
-        personajes.push(gonzagiaco);
+        personajes.push(gonzagiaco); */
         tarjetasDinamicas(personajes);
     } catch (error) {
         console.error("Error al consumir API: ", error);
@@ -87,12 +87,16 @@ function tarjetasDinamicas(personajes) {
             tarjeta.appendChild(infoAdicional);
 
             // Evento para mostrar la información adicional en contenedorDer al pasar el mouse
-            tarjeta.addEventListener('click', () => {
+            tarjeta.addEventListener('mouseover', () => {
                 const contenedorDer = document.querySelector('.contenedorDer');
                 contenedorDer.innerHTML = '';
                 contenedorDer.appendChild(infoAdicional.cloneNode(true));
             });
 
+            tarjeta.addEventListener('mouseout', () =>{
+                const contenedorDer = document.querySelector('.contenedorDer');
+                contenedorDer.innerHTML = contenedorDerContenido;
+            });
             
 
             // Añadir la tarjeta al contenedor del bloque
